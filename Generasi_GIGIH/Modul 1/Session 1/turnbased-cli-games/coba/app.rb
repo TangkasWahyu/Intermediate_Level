@@ -13,12 +13,12 @@ def start_game
         jin.attack(khotun)
         puts khotun
         puts "\n"
-        break if khotun.is_Dead?
+        break if khotun.isDead?
 
         khotun.attack(jin)
         puts jin
         puts "\n"
-        break if jin.is_Dead?
+        break if jin.isDead?
     end
 end
 

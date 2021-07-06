@@ -12,36 +12,18 @@ class Game_Hero
   end
   
   def take_damage(damage)
-    if @name == "Jin Sakai" && deflect_attack?
-       return
-    end
-
     @hp -= damage
   end
 
   def attack(other_player)
     other_player.take_damage(@attack_dmg)
-    puts "#{@name} has #{@hp} hitpoint and #{@attack_dmg} attack damage\n"
+    puts "#{@name} has #{@hp} hitpoint and #{@attack_dmg} attack damage"
   end
   
-  def is_Dead?
+  def isDead?
     if @hp <= 0
         puts "#{@name} dead"
-        return true
+        true
     end
-
-    puts "#{@name} has #{@hp} hitpoint still alive"
-    return false
-  end
-  
-  def deflect_attack?
-    deflect_chance = rand(50)
-    puts deflect_chance
-    if deflect_chance > 25
-      puts "#{@name} deflects the attack"
-      return true
-    end
-
-    return false
   end
 end
