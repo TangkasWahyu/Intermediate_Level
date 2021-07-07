@@ -35,13 +35,13 @@ class Game_Hero
   end
   
   def deflect_attack?
-    deflect_chance = rand(50)
+    deflect_chance = rand(10)
     puts deflect_chance
-    if deflect_chance > 25
+    if deflect_chance < 8
       puts "#{@name} deflects the attack"
       return true
+    else
+      return false
     end
-
-    return false
   end
 end
