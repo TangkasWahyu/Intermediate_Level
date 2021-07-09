@@ -49,7 +49,6 @@ def start_game
                 villain = villains[index_of_villain - 1]
                 jin.attack(villain)
 
-                # puts "#{villain.name} is dead \n\n" if villain.is_Dead?
                 villains.delete(villain) if (villain.is_Dead?) || villain.is_fleed
 
                 break if villains.empty?
@@ -72,7 +71,6 @@ def start_game
 
             ally.attack(villain)
 
-            # puts "#{villain.name} is dead\n\n" if villain.is_Dead?
             villains.delete(villain) if (villain.is_Dead?) || villain.is_fleed
 
             break if villains.empty?
@@ -86,15 +84,11 @@ def start_game
 
             villain.attack(someone_from_jin_team)
 
-            # puts "#{someone_from_jin_team.name} is dead" if someone_from_jin_team.is_Dead? 
             if (someone_from_jin_team.is_Dead?)
                 jin_team.delete(someone_from_jin_team) 
                 allies.delete(someone_from_jin_team) 
             end
-            
-            # break if jin.is_Dead? 
         end
-        # break if jin.is_Dead? 
 
         turn += 1
     end
