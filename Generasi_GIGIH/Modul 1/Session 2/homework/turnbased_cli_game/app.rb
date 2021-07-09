@@ -1,16 +1,21 @@
-# require_relative './import/Hero'
-require_relative './import/HeroWithSkillDeflect'
+require_relative './import/Hero'
+require_relative './import/HeroWithSkillDeflectAndHealth'
 require_relative './import/MongolArcher'
 require_relative './import/MongolSpearman'
 require_relative './import/MongolSwordman'
 
 def start_game
-    jin = HeroWithSkillDeflect.new('Jin Sakai', 100, 50)
+    jin = HeroWithSkillDeflectAndHealth.new('Jin Sakai', 100, 50)
     # khotun = Hero.new('Khotun Khan', 500, 50)
+    yuna = Hero.new("Yuna", 45, 90)
+    sensei = Hero.new("Sensei Ishikawa", 60, 80)
+
     archer = MongolArcher.new("Mongol Archer", 40, 80)
     spearman = MongolSpearman.new("Mongol Spearman", 50, 120)
     swordman = MongolSwordman.new("Mongol Swordman", 60, 100)
 
+    allies = [yuna, sensei]
+    jin_team = [jin, *allies]
     villains = [archer, spearman, swordman]
     turn = 1
 
@@ -18,26 +23,78 @@ def start_game
         puts "======= Turn #{turn} ======= \n\n"
         
         puts jin
+        allies.each do | ally |
+            puts ally
+        end
+        puts "\n"
+
         villains.each do | villain |
             puts villain
         end
         puts "\n"
 
-        villain = villains.sample
+        puts "As #{jin.name}. what do you want to do in this turn?"
+        puts "1) Attack an enemy"
+        puts "2) Heal an ally"
 
-        jin.attack(villain)
+        attack_or_heal = gets.chomp.to_i
+        case attack_or_heal
+            when 1
+                puts "Which enemy you want to attack?"
+                villains.each_with_index do | villain, index |
+                    puts "#{index + 1}) #{villain}"
+                end
+                index_of_villain = gets.chomp.to_i
 
-        villains.delete(villain) if (villain.is_Dead?) || villain.is_fleed
+                villain = villains[index_of_villain - 1]
+                jin.attack(villain)
 
-        puts "#{villain.name} dead \n\n" if villain.is_Dead?
+                puts "#{villain.name} is dead \n\n" if villain.is_Dead?
+                villains.delete(villain) if (villain.is_Dead?) || villain.is_fleed
+
+                break if villains.empty?
+            when 2
+                puts "Which ally you want to heals?"
+                allies.each_with_index do | alley, index |
+                    puts "#{index + 1}) #{alley}"
+                end
+                index_of_ally = gets.chomp.to_i
+
+                jin.heals(allies[index_of_ally - 1])
+            else
+                puts "Please input 1 or 2"
+        end
         break if villains.empty?
 
-        villains.each do |villain|
-            villain.attack(jin)
-            break if jin.is_Dead?
+        allies.each do |ally|
+            villains_index = rand(villains.length)
+            villain = villains[villains_index]
+
+            ally.attack(villain)
+
+            puts "#{villain.name} is dead\n\n" if villain.is_Dead?
+            villains.delete(villain) if (villain.is_Dead?) || villain.is_fleed
+
+            break if villains.empty?
         end
-        
-        break if jin.is_Dead?
+        break if villains.empty?
+        puts "\n"
+
+        villains.each do |villain|
+            jin_team_index = rand(jin_team.length)
+            someone_from_jin_team = jin_team[jin_team_index]
+
+            villain.attack(someone_from_jin_team)
+
+            puts "#{someone_from_jin_team.name} is dead" if someone_from_jin_team.is_Dead? 
+            if (someone_from_jin_team.is_Dead?)
+                jin_team.delete(someone_from_jin_team) 
+                allies.delete(someone_from_jin_team) 
+            end
+            
+            break if jin.is_Dead? 
+        end
+        break if jin.is_Dead? 
 
         turn += 1
     end

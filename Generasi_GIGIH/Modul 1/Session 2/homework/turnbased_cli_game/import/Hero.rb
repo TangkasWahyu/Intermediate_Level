@@ -27,8 +27,12 @@ class Hero
       return true
     end
 
-    puts "#{@name} has #{@hp} hitpoint still alive"
+    puts "#{@name} has #{@hp} hit point still alive"
     puts "\n"
     return false
+  end
+
+  def heals(healing_point)
+    @hp += healing_point
   end
 end
