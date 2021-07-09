@@ -5,14 +5,14 @@ require_relative './import/MongolSpearman'
 require_relative './import/MongolSwordman'
 
 def start_game
-    jin = HeroWithSkillDeflectAndHealth.new('Jin Sakai', 100, 50)
+    jin = HeroWithSkillDeflectAndHealth.new('Jin Sakai', 500, 80)
     # khotun = Hero.new('Khotun Khan', 500, 50)
-    yuna = Hero.new("Yuna", 45, 90)
-    sensei = Hero.new("Sensei Ishikawa", 60, 80)
+    yuna = Hero.new("Yuna", 500, 90)
+    sensei = Hero.new("Sensei Ishikawa", 500, 80)
 
-    archer = MongolArcher.new("Mongol Archer", 40, 80)
-    spearman = MongolSpearman.new("Mongol Spearman", 50, 120)
-    swordman = MongolSwordman.new("Mongol Swordman", 60, 100)
+    archer = MongolArcher.new("Mongol Archer", 500, 80)
+    spearman = MongolSpearman.new("Mongol Spearman", 500, 120)
+    swordman = MongolSwordman.new("Mongol Swordman", 500, 100)
 
     allies = [yuna, sensei]
     jin_team = [jin, *allies]
@@ -49,7 +49,7 @@ def start_game
                 villain = villains[index_of_villain - 1]
                 jin.attack(villain)
 
-                puts "#{villain.name} is dead \n\n" if villain.is_Dead?
+                # puts "#{villain.name} is dead \n\n" if villain.is_Dead?
                 villains.delete(villain) if (villain.is_Dead?) || villain.is_fleed
 
                 break if villains.empty?
@@ -72,7 +72,7 @@ def start_game
 
             ally.attack(villain)
 
-            puts "#{villain.name} is dead\n\n" if villain.is_Dead?
+            # puts "#{villain.name} is dead\n\n" if villain.is_Dead?
             villains.delete(villain) if (villain.is_Dead?) || villain.is_fleed
 
             break if villains.empty?
@@ -86,15 +86,15 @@ def start_game
 
             villain.attack(someone_from_jin_team)
 
-            puts "#{someone_from_jin_team.name} is dead" if someone_from_jin_team.is_Dead? 
+            # puts "#{someone_from_jin_team.name} is dead" if someone_from_jin_team.is_Dead? 
             if (someone_from_jin_team.is_Dead?)
                 jin_team.delete(someone_from_jin_team) 
                 allies.delete(someone_from_jin_team) 
             end
             
-            break if jin.is_Dead? 
+            # break if jin.is_Dead? 
         end
-        break if jin.is_Dead? 
+        # break if jin.is_Dead? 
 
         turn += 1
     end
