@@ -7,7 +7,7 @@ Name: I Made Tangkas Wahyu Kencana Yuda
 
 Project Track: Backend Development
 
-## Module 1-Session 1 = turnbased-cli-game
+## Module 1-Session 1, 2, 3 = ./homework/turnbased-cli-game
 
 Implementing CLI Turnbased Game using ruby
 
