@@ -22,8 +22,8 @@ class Hero
   
   def is_Dead?
     if @hp <= 0
-      # puts "\n"
-      # puts "#{@name} dead"
+      puts "\n"
+      puts "#{@name} is dead"
       return true
     end
 

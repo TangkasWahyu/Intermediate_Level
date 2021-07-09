@@ -8,8 +8,8 @@ def start_game
     jin = HeroWithSkillDeflect.new('Jin Sakai', 100, 50)
     # khotun = Hero.new('Khotun Khan', 500, 50)
     archer = MongolArcher.new("Mongol Archer", 40, 80)
-    spearman = MongolSpearman.new("Mongol Spearman", 50, 120)
-    swordman = MongolSwordman.new("Mongol Swordman", 60, 100)
+    spearman = MongolSpearman.new("Mongol Spearman", 50, 80)
+    swordman = MongolSwordman.new("Mongol Swordman", 60, 80)
 
     villains = [archer, spearman, swordman]
     turn = 1
@@ -29,15 +29,11 @@ def start_game
 
         villains.delete(villain) if (villain.is_Dead?) || villain.is_fleed
 
-        puts "#{villain.name} is dead \n\n" if villain.is_Dead?
         break if villains.empty?
 
         villains.each do |villain|
             villain.attack(jin)
-            break if jin.is_Dead?
         end
-        
-        break if jin.is_Dead?
 
         turn += 1
     end
