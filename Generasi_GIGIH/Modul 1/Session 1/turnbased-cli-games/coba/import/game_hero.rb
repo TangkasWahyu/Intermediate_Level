@@ -12,12 +12,18 @@ class Game_Hero
   end
   
   def take_damage(damage)
-    @hp -= damage
+    if @name == "Jin Sakai" && hasChance(0.8)
+      # do nothing
+      puts hasChance
+      puts "hjhjh"
+    else
+      @hp -= damage
+    end
   end
 
   def attack(other_player)
-    other_player.take_damage(@attack_dmg)
     puts "#{@name} has #{@hp} hitpoint and #{@attack_dmg} attack damage"
+    other_player.take_damage(@attack_dmg)
   end
   
   def isDead?
@@ -25,5 +31,9 @@ class Game_Hero
         puts "#{@name} dead"
         true
     end
+  end
+
+  def hasChance(prob=0.8)
+    rand < prob
   end
 end
