@@ -29,7 +29,7 @@ def start_game
 
         villains.delete(villain) if (villain.is_Dead?) || villain.is_fleed
 
-        puts "#{villain.name} dead \n\n" if villain.is_Dead?
+        puts "#{villain.name} is dead \n\n" if villain.is_Dead?
         break if villains.empty?
 
         villains.each do |villain|
