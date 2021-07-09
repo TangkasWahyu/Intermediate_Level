@@ -16,14 +16,14 @@ class Hero
   end
 
   def attack(other_player)
-    puts "#{@name} has #{@hp} hit point and #{@attack_dmg} attack damage"
+    puts "#{@name} attacks #{other_player.name} with #{@attack_dmg} damage"
     other_player.take_damage(@attack_dmg)
   end
   
   def is_Dead?
     if @hp <= 0
-      puts "\n"
-      puts "#{@name} dead"
+      # puts "\n"
+      # puts "#{@name} dead"
       return true
     end
 

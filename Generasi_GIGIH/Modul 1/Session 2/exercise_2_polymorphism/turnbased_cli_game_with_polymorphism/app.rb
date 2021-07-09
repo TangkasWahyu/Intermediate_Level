@@ -23,14 +23,14 @@ def start_game
         end
         puts "\n"
 
-        villain = villains.first
+        villain = villains.sample
 
         jin.attack(villain)
 
-        villains.delete(villain) if (not villain.is_Dead?) || villain.is_fleed
+        villains.delete(villain) if (villain.is_Dead?) || villain.is_fleed
 
-        puts "#{villain.name} dead \n\n" if not villain.is_Dead?
-        break if not villains.empty?
+        puts "#{villain.name} dead \n\n" if villain.is_Dead?
+        break if villains.empty?
 
         villains.each do |villain|
             villain.attack(jin)
